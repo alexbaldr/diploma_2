@@ -8,14 +8,6 @@ import json
 import random
 
 
-log = (input("Введите логин: "))
-pas = (input("Введите пароль: "))
-age1 = (input("Укажите возраст от: "))
-age2 = (input("Укажите возраст до: "))
-
-named_tuple = time.localtime()
-time_string = time.strftime("%Y", named_tuple)
-
 client = MongoClient()
 vkinder_bd = client['VKinder']
 coll_in = vkinder_bd['Matches']
@@ -31,6 +23,8 @@ class USER:
 # Формируем данные пользователя в словарь
 
     def main(self):
+        log = (input("Введите логин: "))
+        pas = (input("Введите пароль: "))
         login, password = log, pas
         self.vk_session = vk_api.VkApi(login, password)
         pattern = re.compile(r'\d+$')
@@ -71,6 +65,8 @@ class USER:
 # Поиск жертвы c созданием JSON
 
     def user_search(self):
+        age1 = (input("Укажите возраст от: "))
+        age2 = (input("Укажите возраст до: "))
         s_p = self.create_response()
         vk = self.vk_session.get_api()
         user_list = []
